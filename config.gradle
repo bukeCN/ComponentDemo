@@ -1,0 +1,12 @@
+// 编译配置类
+ext {
+    // 组合配置，只有打包合成 apk 的时侯才能改配置
+    componentConfig = [
+            // 各 module 是否开启组件模式，true 则个 module 单独调式，为 false 则组合进 app 壳中。
+            isComponentModule : false,
+            // 壳 app 需要依赖的 module
+            neddApplyModules : [
+                    ":modulle_1"
+            ]
+    ]
+}
