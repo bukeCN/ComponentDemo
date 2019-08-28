@@ -1,4 +1,10 @@
-apply plugin: 'com.android.library'
+def config = rootProject.ext.componentConfig
+
+if (config.isComponentModule){
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 
 android {
     compileSdkVersion 28
@@ -21,6 +27,19 @@ android {
         }
     }
 
+    sourceSets {
+        main{
+            // 通过 buildConfig.gradle 中的配置，决定使用那个 Manifest.xml 文件
+            if (config.isComponentModule) {
+                // 使用能独立运行的 Manifest.xml 文件
+                manifest.srcFile("src/module_2/AndroidManifest.xml")
+            } else {
+                // 使用 library 的 Mainfest.xml 文件
+                manifest.srcFile("src/main/AndroidManifest.xml")
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -30,4 +49,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation project(':comm')
 }

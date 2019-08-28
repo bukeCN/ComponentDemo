@@ -28,9 +28,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    // 如果是集成状态，通过遍历依赖集成配置中的 module
     if (!config.isComponentModule){
         for (String modluePath : config.neddApplyModules){
-            println("App依赖 Modlue 路径")
             implementation project(modluePath)
         }
     }

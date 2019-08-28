@@ -6,7 +6,8 @@ ext {
             isComponentModule : false,
             // 壳 app 需要依赖的 module
             neddApplyModules : [
-                    ":modulle_1"
+                    ":module_1",
+                    ":module_2"
             ]
     ]
 }
